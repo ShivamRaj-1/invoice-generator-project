@@ -4,10 +4,11 @@ import ClientTable from "../../components/Clients/ClientTable";
 import InvoiceTable from "../../components/Invoice/InvoiceTable";
 import DashboardWidgets from "../../components/Dashboard/DashboardWidgets";
 import PageTitle from '../../components/Common/PageTitle';
+// import QuickEditCompany from "../../components/Dashboard/QuickEditCompany";
 
 export default function Dashboard() {
     const navigate = useNavigate();
-    
+
     return (
         <div>
             <div className="p-4">
@@ -24,19 +25,21 @@ export default function Dashboard() {
                     </div>
                 </div>
                 {/* <div className="w-full lg:w-2/6 pl-4 pr-4 sm:pl-4 sm:pr-2">
-          <div>
-            <Button onClick={goToNewInvoice} block={1}>
-              <InvoiceIcon />
-              <span className="inline-block ml-2"> Add New Invoice </span>
-            </Button>
-          </div>
+                    <div>
+                        <Button onClick={goToNewInvoice} block={1}>
+                        <InvoiceIcon />
+                        <span className="inline-block ml-2"> Add New Invoice </span>
+                        </Button>
+                    </div>
 
-          <QuickEditCompany isShowDetail={false} />
-          
-          <div className="mt-4">
-            <QuickAddClient />
-          </div>
-        </div> */}
+                    <QuickEditCompany isShowDetail={false} />
+                    
+                    <div className="mt-4">
+                        <QuickAddClient />
+                    </div>
+                    </div> */}
+
+                {/* <QuickEditCompany isShowDetail={false} /> */}
             </div>
         </div>
     )

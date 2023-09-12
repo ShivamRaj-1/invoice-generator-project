@@ -105,6 +105,8 @@ function QuickEditCompany({ isShowDetail = false, alreadySet = false }) {
   return (
     <div className="bg-white rounded-xl p-4 mt-4">
       <SectionTitle> Quick Edit Company </SectionTitle>
+
+      {/* upload company image  */}
       <div className="flex mt-2">
         {isInitLoading ? (
           <Skeleton className="skeleton-input-radius skeleton-image border-dashed border-2" />
@@ -136,6 +138,7 @@ function QuickEditCompany({ isShowDetail = false, alreadySet = false }) {
         </div>
       </div>
 
+      {/* company address  */}
       <div className="flex mt-2">
         <div className="flex-1">
           {isInitLoading ? (
@@ -157,6 +160,7 @@ function QuickEditCompany({ isShowDetail = false, alreadySet = false }) {
       </div>
 
       <>
+        {/* company email  */}
         <div className="flex mt-2">
           <div className="flex-1">
             {isInitLoading ? (
@@ -176,6 +180,8 @@ function QuickEditCompany({ isShowDetail = false, alreadySet = false }) {
             )}
           </div>
         </div>
+              
+        {/* company number  */}
         <div className="flex mt-2">
           <div className="flex-1">
             {isInitLoading ? (
@@ -197,11 +203,13 @@ function QuickEditCompany({ isShowDetail = false, alreadySet = false }) {
         </div>
       </>
 
+      {/* submit  */}
       <div className="mt-3">
         <Button onClick={submitHandler} block={1}>
           <span className="inline-block ml-2"> Submit </span>
         </Button>
       </div>
+      
     </div>
   );
 }

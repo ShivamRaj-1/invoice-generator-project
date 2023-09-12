@@ -20,13 +20,14 @@ import InvoiceConfirmModal from "./components/Invoice/InvoiceConfirmModal";
 import InvoiceDeleteConfirm from "./components/Invoice/InvoiceDeleteConfirm";
 import PageLoading from "./components/Common/PageLoading";
 import Dashboard from "./pages/dashboard/Dashboard";
+import ProfileScreen from "./pages/profile/ProfileScreen";
 
 const App = () => {
   const { initialSetData } = useInitApp();
 
   useEffect(() => {
     initialSetData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
 
   return (
@@ -36,6 +37,8 @@ const App = () => {
           <Route path="/" element={<DashboardScreen />} />
 
           <Route path="dashboard" element={<Dashboard />} />
+
+          <Route path="profile" element={<ProfileScreen />} />
 
           <Route path="clients" element={<ClientListScreen />}></Route>
 

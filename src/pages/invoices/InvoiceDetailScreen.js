@@ -9,7 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { useReactToPrint } from "react-to-print";
 import { useDispatch, useSelector } from "react-redux";
-import {NumericFormat} from "react-number-format";
+import { NumericFormat } from "react-number-format";
 import { toast } from "react-toastify";
 import domtoimage from "dom-to-image";
 import InvoiceTopBar from "../../components/Invoice/InvoiceTopBar";
@@ -609,8 +609,12 @@ function InvoiceDetailScreen(props) {
     }
   }, [dispatch, invoiceForm, isConfirm, navigate, params, statusData]);
 
+  console.log(invoiceForm);
+
   return (
     <div>
+
+      {/* for invoice page title  */}
       <div className="p-4">
         <PageTitle
           title={
@@ -622,6 +626,8 @@ function InvoiceDetailScreen(props) {
           }
         />
       </div>
+
+      {/* For setting menu at top  */}
       <div className="px-4 pb-3">
         <InvoiceTopBar
           onClickBack={goInvoiceList}
@@ -633,6 +639,7 @@ function InvoiceDetailScreen(props) {
         />
       </div>
 
+      {/* Main invoice section  */}
       {invoiceForm && (
         <div
           className={
@@ -651,18 +658,104 @@ function InvoiceDetailScreen(props) {
                 ? "py-5 px-8 bg-cover bg-center bg-slate-50 rounded-xl flex flex-row justify-between items-center"
                 : "py-9 px-8 bg-cover bg-center bg-slate-50 rounded-xl flex flex-col sm:flex-row justify-between items-center"
             }
-            style={{
-              backgroundImage: `url(${invoiceForm?.backgroundImage?.base64})`,
-            }}
+          // style={{
+          //   backgroundImage: `url(${invoiceForm?.backgroundImage?.base64})`,
+          // }}
           >
+
+            <div className=" font-title font-bold text-5xl mt-5 sm:mt-0" style={{ color: invoiceForm.color }}>
+              Invoice
+            </div>
+          </div>
+          {/* Background Image Finished */}
+
+          
+
+            {/* invoice creation info  */}
+          <div className=" px-5 pt-3 w-3/5 lg:w-1/4">
+            <div className="flex flex-row justify-between items-center mb-1">
+              <div className="font-title flex-1"> INVOICE No.# </div>
+              <div className="font-title flex-1 text-right">
+                {!isViewMode ? (
+                  <input
+                    autoComplete="nope"
+                    placeholder="Invoice No"
+                    className={defaultInputSmStyle + " text-right"}
+                    value={invoiceForm.invoiceNo}
+                    onChange={(e) => handlerInvoiceValue(e, "invoiceNo")}
+                  />
+                ) : (
+                  invoiceForm.invoiceNo || "-"
+                )}
+              </div>
+            </div>
+            <div className="flex flex-row justify-between items-center mb-1">
+              <div className="font-title flex-1"> Creation Date </div>
+              <div className="font-title flex-1 text-right">
+                <DatePicker
+                  selected={invoiceForm.createdDate}
+                  onChange={(date) =>
+                    handlerInvoiceValue(date.toISOString(), "createdDate")
+                  }
+                  disabled={true}
+                  className={
+                    !isViewMode
+                      ? defaultInputSmStyle + " border-gray-300 text-right"
+                      : " text-right bg-white"
+                  }
+                />
+              </div>
+            </div>
+            <div className="flex flex-row justify-between items-center mb-1">
+              <div className="font-title flex-1"> Due Date </div>
+              <div className="font-title flex-1 text-right">
+                <DatePicker
+                  selected={invoiceForm.dueDate}
+                  onChange={(date) =>
+                    handlerInvoiceValue(date.toISOString(), "dueDate")
+                  }
+                  disabled={isViewMode}
+                  className={
+                    !isViewMode
+                      ? defaultInputSmStyle + " border-gray-300 text-right"
+                      : " text-right bg-white"
+                  }
+                />
+              </div>
+            </div>
+            {!isViewMode && (
+              <div className="flex flex-row justify-between items-center mb-1">
+                <div className="font-title flex-1"> Change Currency </div>
+                <div className="font-title flex-1 text-right">
+                  <input
+                    autoComplete="nope"
+                    placeholder="Invoice No"
+                    className={defaultInputSmStyle + " text-right"}
+                    value={invoiceForm.currencyUnit}
+                    onChange={(e) => handlerInvoiceValue(e, "currencyUnit")}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Customer Billing Info */}
+          <div
+            className={
+              isExporting
+                ? "flex flex-row pt-2 px-8"
+                : "flex flex-col sm:flex-row pt-3 px-8"
+            }
+          >
+            {/* company info  */}
             <div
               className={
                 isExporting
-                  ? "flex xflex-row items-center"
-                  : "flex flex-col sm:flex-row items-center"
+                  ? "w-2/4 flex xflex-row items-center"
+                  : "w-2/4 flex flex-col sm:flex-row items-center"
               }
             >
-              {invoiceForm?.companyDetail?.image ? (
+              {/* {invoiceForm?.companyDetail?.image ? (
                 <img
                   className="object-contain h-20 w-20 mr-3 rounded"
                   alt={invoiceForm?.companyDetail?.companyName}
@@ -670,15 +763,16 @@ function InvoiceDetailScreen(props) {
                 />
               ) : (
                 <span></span>
-              )}
+              )} */}
 
               <div
                 className={
                   isExporting
-                    ? "text-white font-title text-left"
-                    : "text-white font-title text-center sm:text-left"
+                    ? " font-title text-left"
+                    : " font-title text-center sm:text-left"
                 }
               >
+                 <div className="font-title font-bold">Billed By</div>
                 <p className="font-bold mb-2">
                   {invoiceForm?.companyDetail?.companyName || "Company Name"}
                 </p>
@@ -695,20 +789,9 @@ function InvoiceDetailScreen(props) {
                 </p>
               </div>
             </div>
-            <div className="text-white font-title font-bold text-5xl mt-5 sm:mt-0">
-              Invoice
-            </div>
-          </div>
-          {/* Background Image Finished */}
-          {/* Customer Billing Info */}
-          <div
-            className={
-              isExporting
-                ? "flex flex-row pt-2 px-8"
-                : "flex flex-col sm:flex-row pt-3 px-8"
-            }
-          >
-            <div className="flex-1">
+
+
+            <div className="w-2/4 flex-1">
               <div className="flex flex-row">
                 <div className="font-title font-bold">Billing To</div>
                 <div className="w-1/2 relative ml-3" style={{ top: "-3px" }}>
@@ -722,7 +805,7 @@ function InvoiceDetailScreen(props) {
               <div className="client-form-wrapper sm:w-1/2">
                 <div
                   className={
-                    "font-medium " + (isExporting ? "text-xs" : "text-sm mb-1")
+                    "font-bold " + (isExporting ? "text-xs" : "text-sm mb-1")
                   }
                 >
                   {!isViewMode ? (
@@ -792,72 +875,8 @@ function InvoiceDetailScreen(props) {
                 </div>
               </div>
             </div>
-            <div className="flex-1">
-              <div className="flex flex-row justify-between items-center mb-1">
-                <div className="font-title flex-1"> INVOICE # </div>
-                <div className="font-title flex-1 text-right">
-                  {!isViewMode ? (
-                    <input
-                      autoComplete="nope"
-                      placeholder="Invoice No"
-                      className={defaultInputSmStyle + " text-right"}
-                      value={invoiceForm.invoiceNo}
-                      onChange={(e) => handlerInvoiceValue(e, "invoiceNo")}
-                    />
-                  ) : (
-                    invoiceForm.invoiceNo || "-"
-                  )}
-                </div>
-              </div>
-              <div className="flex flex-row justify-between items-center mb-1">
-                <div className="font-title flex-1"> Creation Date </div>
-                <div className="font-title flex-1 text-right">
-                  <DatePicker
-                    selected={invoiceForm.createdDate}
-                    onChange={(date) =>
-                      handlerInvoiceValue(date.toISOString(), "createdDate")
-                    }
-                    disabled={true}
-                    className={
-                      !isViewMode
-                        ? defaultInputSmStyle + " border-gray-300 text-right"
-                        : " text-right bg-white"
-                    }
-                  />
-                </div>
-              </div>
-              <div className="flex flex-row justify-between items-center mb-1">
-                <div className="font-title flex-1"> Due Date </div>
-                <div className="font-title flex-1 text-right">
-                  <DatePicker
-                    selected={invoiceForm.dueDate}
-                    onChange={(date) =>
-                      handlerInvoiceValue(date.toISOString(), "dueDate")
-                    }
-                    disabled={isViewMode}
-                    className={
-                      !isViewMode
-                        ? defaultInputSmStyle + " border-gray-300 text-right"
-                        : " text-right bg-white"
-                    }
-                  />
-                </div>
-              </div>
-              {!isViewMode && (
-                <div className="flex flex-row justify-between items-center mb-1">
-                  <div className="font-title flex-1"> Change Currency </div>
-                  <div className="font-title flex-1 text-right">
-                    <input
-                      autoComplete="nope"
-                      placeholder="Invoice No"
-                      className={defaultInputSmStyle + " text-right"}
-                      value={invoiceForm.currencyUnit}
-                      onChange={(e) => handlerInvoiceValue(e, "currencyUnit")}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
+
+            
           </div>
           {/* Customer Billing Info Finished */}
 
@@ -879,7 +898,7 @@ function InvoiceDetailScreen(props) {
                     : " w-full sm:w-1/4 text-right sm:pr-10")
                 }
               >
-                <span className="inline-block">Description</span>
+                <span className="inline-block">Item</span>
               </div>
               <div
                 className={
@@ -889,7 +908,7 @@ function InvoiceDetailScreen(props) {
                     : " w-full sm:w-1/4 text-right sm:pr-10")
                 }
               >
-                Price
+                Rate
               </div>
               <div
                 className={
@@ -899,7 +918,7 @@ function InvoiceDetailScreen(props) {
                     : " w-full sm:w-1/4 text-right sm:pr-10")
                 }
               >
-                Qty
+                Quantity
               </div>
               <div
                 className={
@@ -1072,9 +1091,9 @@ function InvoiceDetailScreen(props) {
                         Number.isInteger(product.quantity * product.amount)
                           ? product.quantity * product.amount
                           : (product.quantity * product.amount)
-                              .toFixed(4)
-                              .toString()
-                              .slice(0, -2)
+                            .toFixed(4)
+                            .toString()
+                            .slice(0, -2)
                       }
                       className=""
                       displayType={"text"}
@@ -1366,6 +1385,7 @@ function InvoiceDetailScreen(props) {
         </div>
       )}
 
+      {/* Save as draft, unpaid and paid menu  */}
       {invoiceForm && invoiceForm?.statusIndex !== "3" && (
         <div className="px-4 pt-3">
           <div className="bg-white rounded-xl px-3 py-3">
@@ -1378,6 +1398,7 @@ function InvoiceDetailScreen(props) {
                     block={1}
                     secondary={1}
                     onClick={() => saveAs("Draft")}
+                    style={{ color: "black" }}
                   >
                     <CheckCircleIcon className="h-5 w-5 mr-1" /> Save As Draft
                   </Button>
@@ -1391,6 +1412,7 @@ function InvoiceDetailScreen(props) {
                     block={1}
                     danger={1}
                     onClick={() => saveAs("Unpaid")}
+                    style={{ color: "red" }}
                   >
                     <DollarIcon className="h-5 w-5 mr-1" />{" "}
                     {params.id === "new" ? "Save" : "Update"} As Unpaid
@@ -1413,6 +1435,7 @@ function InvoiceDetailScreen(props) {
         </div>
       )}
 
+      {/* Invoice topbar at bottom for saving and changing settings menu */}
       {invoiceForm && (
         <div className="p-4">
           <InvoiceTopBar

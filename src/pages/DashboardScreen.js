@@ -39,7 +39,7 @@ function DashboardScreen() {
               <div className="p-4 w-[100%] md:w-[30%] hover:drop-shadow-md bg-white rounded-xl ">
                 <img src={invoice} alt="invoice pic" className="h-20 w-20" />
                 <h1 className="font-semibold text-lg mt-4">Create an Invoice</h1>
-                <p className="text-slate-500 mt-3 mb-5">Effortlessly create, share and download professional invoices to clients</p>
+                <p className="text-slate-500 mt-3 mb-5">Effortlessly create, download and share professional invoices to clients</p>
                 <button onClick={() => navigate('/invoices')} className=" rounded bg-blue-600 text-white p-1 w-[100%] md:w-[50%] hover:bg-blue-500">New Invoice</button>
               </div>
 

@@ -13,6 +13,8 @@ import InvoiceNavbarLoading from "../Loading/InvoiceNavbarLoading";
 import { getCompanyData } from "../../store/companySlice";
 import Skeleton from "react-loading-skeleton";
 import {MdOutlineDashboard} from 'react-icons/md';
+import {CgProfile} from 'react-icons/cg';
+
 
 const NAV_DATA = [
   {
@@ -24,6 +26,11 @@ const NAV_DATA = [
     title: "Dashboard",
     link: "dashboard",
     Icon: MdOutlineDashboard,
+  },
+  {
+    title: "Pofile",
+    link: "profile",
+    Icon: CgProfile,
   },
   {
     title: "Invoices",
@@ -149,9 +156,9 @@ function Sidebar() {
           ))}
         </ul>
 
-        <hr />
+        {/* <hr /> */}
 
-        <div className="my-4">
+        {/* <div className="my-4">
           <NavLink to={"about"}>
             <motion.span
               className="block px-4 py-2 rounded-md flex text-default-color"
@@ -175,11 +182,11 @@ function Sidebar() {
               About Me
             </motion.span>
           </NavLink>
-        </div>
+        </div> */}
 
-        <hr />
+        {/* <hr /> */}
 
-        <div className="mt-4">
+        {/* <div className="mt-4">
           <motion.a
             href={"#!"}
             className="block px-4 py-2 rounded-md flex"
@@ -203,7 +210,7 @@ function Sidebar() {
             <DeleteIcon className="h-6 w-6 mr-4" />
             Clear Data
           </motion.a>
-        </div>
+        </div> */}
       </nav>
     </>
   );

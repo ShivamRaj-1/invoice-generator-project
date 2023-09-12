@@ -26,6 +26,7 @@ export const companySlice = createSlice({
           companyEmail,
           companyMobile,
         } = action.payload;
+        
         state.data.image = image ? image : "";
         state.data.billingAddress = billingAddress ? billingAddress : "";
         state.data.companyName = companyName ? companyName : "";
