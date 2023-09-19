@@ -7,7 +7,7 @@ const initialState = {
   openClientSelector: false,
   selectedClient: null,
   data: [],
-  newForm: {
+  newForm: { 
     id: nanoid(),
     image: "",
     name: "",

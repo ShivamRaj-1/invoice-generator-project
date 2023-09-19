@@ -30,6 +30,7 @@ function ClientTable({ showAdvanceSearch = false }) {
   const { initLoading } = useAppContext();
   const dispatch = useDispatch();
   const allClients = useSelector(getAllClientsSelector);
+  // console.log(allClients);
 
   const [searchForm, setSearchForm] = useState(emptySearchForm);
   const [currentItems, setCurrentItems] = useState(null);

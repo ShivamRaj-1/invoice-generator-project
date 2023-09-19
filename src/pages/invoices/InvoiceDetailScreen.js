@@ -504,7 +504,6 @@ function InvoiceDetailScreen(props) {
         dispatch(setDefaultColor(invoiceNewForm.color));
       } else if (params.id !== "new" && invoiceForm === null) {
         // Else Exisiting Invoice,
-        // We'll Set Company Data
         // But if it's Draft, we'll currenty set the data for Current Company Data
         // Because it's still Draft State
         const getInvoiceDetail = allInvoiceDetails.find(
@@ -669,10 +668,10 @@ function InvoiceDetailScreen(props) {
           </div>
           {/* Background Image Finished */}
 
-          
 
-            {/* invoice creation info  */}
-          <div className=" px-5 pt-3 w-3/5 lg:w-1/4">
+
+          {/* invoice creation info  */}
+          <div className=" px-5 pt-3 w-3/5 lg:w-2/6">
             <div className="flex flex-row justify-between items-center mb-1">
               <div className="font-title flex-1"> INVOICE No.# </div>
               <div className="font-title flex-1 text-right">
@@ -743,16 +742,16 @@ function InvoiceDetailScreen(props) {
           <div
             className={
               isExporting
-                ? "flex flex-row pt-2 px-8"
-                : "flex flex-col sm:flex-row pt-3 px-8"
+                ? "flex flex-row pt-2 px-8 sm:px-3 sm:flex-row"
+                : "flex flex-col sm:flex-row pt-3 px-8 sm:flex-row"
             }
           >
             {/* company info  */}
             <div
               className={
                 isExporting
-                  ? "w-2/4 flex xflex-row items-center"
-                  : "w-2/4 flex flex-col sm:flex-row items-center"
+                  ? "w-2/4 flex flex-row items-center sm:mb-4"
+                  : "w-2/4 flex flex-col sm:flex-row items-center sm:mb-4"
               }
             >
               {/* {invoiceForm?.companyDetail?.image ? (
@@ -769,10 +768,10 @@ function InvoiceDetailScreen(props) {
                 className={
                   isExporting
                     ? " font-title text-left"
-                    : " font-title text-center sm:text-left"
+                    : " font-title text-left sm:text-left"
                 }
               >
-                 <div className="font-title font-bold">Billed By</div>
+                <div className="font-title font-bold">Billed By</div>
                 <p className="font-bold mb-2">
                   {invoiceForm?.companyDetail?.companyName || "Company Name"}
                 </p>
@@ -790,7 +789,7 @@ function InvoiceDetailScreen(props) {
               </div>
             </div>
 
-
+            {/* billed to  */}
             <div className="w-2/4 flex-1">
               <div className="flex flex-row">
                 <div className="font-title font-bold">Billing To</div>
@@ -876,7 +875,7 @@ function InvoiceDetailScreen(props) {
               </div>
             </div>
 
-            
+
           </div>
           {/* Customer Billing Info Finished */}
 
