@@ -742,8 +742,8 @@ function InvoiceDetailScreen(props) {
           <div
             className={
               isExporting
-                ? "flex flex-row pt-2 px-8 sm:px-3 sm:flex-row"
-                : "flex flex-col sm:flex-row pt-3 px-8 sm:flex-row"
+                ? "flex flex-row pt-2 px-8 sm:px-3 sm:flex-row mt-2"
+                : "flex flex-col sm:flex-row pt-3 px-8 sm:flex-row mt-2"
             }
           >
             {/* company info  */}
@@ -767,12 +767,12 @@ function InvoiceDetailScreen(props) {
               <div
                 className={
                   isExporting
-                    ? " font-title text-left"
-                    : " font-title text-left sm:text-left"
+                    ? " font-title text-left ml-2"
+                    : " font-title text-left sm:text-left ml-2"
                 }
               >
                 <div className="font-title font-bold">Billed By</div>
-                <p className="font-bold mb-2">
+                <p className="font-bold ">
                   {invoiceForm?.companyDetail?.companyName || "Company Name"}
                 </p>
                 <p className="text-sm font-medium">
@@ -804,7 +804,7 @@ function InvoiceDetailScreen(props) {
               <div className="client-form-wrapper sm:w-1/2">
                 <div
                   className={
-                    "font-bold " + (isExporting ? "text-xs" : "text-sm mb-1")
+                    "font-bold " + (isExporting ? "text-xs mb-1" : "text-sm mb-1")
                   }
                 >
                   {!isViewMode ? (
@@ -821,7 +821,7 @@ function InvoiceDetailScreen(props) {
                 </div>
                 <div
                   className={
-                    "font-medium " + (isExporting ? "text-xs" : "text-sm mb-1")
+                    "font-medium " + (isExporting ? "text-xs mb-1" : "text-sm mb-1")
                   }
                 >
                   {!isViewMode ? (
@@ -840,7 +840,7 @@ function InvoiceDetailScreen(props) {
                 </div>
                 <div
                   className={
-                    "font-medium " + (isExporting ? "text-xs" : "text-sm mb-1")
+                    "font-medium " + (isExporting ? "text-xs mb-1" : "text-sm mb-1")
                   }
                 >
                   {!isViewMode ? (
@@ -857,7 +857,7 @@ function InvoiceDetailScreen(props) {
                 </div>
                 <div
                   className={
-                    "font-medium " + (isExporting ? "text-xs" : "text-sm mb-1")
+                    "font-medium " + (isExporting ? "text-xs mb-1" : "text-sm mb-1")
                   }
                 >
                   {!isViewMode ? (

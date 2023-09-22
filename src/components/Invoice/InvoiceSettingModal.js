@@ -80,7 +80,7 @@ function InvoiceSettingModal(props) {
                       key={color}
                       onClick={() => onClickColor(color)}
                       className={
-                        "inline-block w-8 h-8 mx-2 cursor-pointer " +
+                        "inline-block w-12 h-12 mx-2 cursor-pointer " +
                         (currentColor === color
                           ? " border-2 border-blue-500 "
                           : " rounded-2xl scale-75")
@@ -90,7 +90,7 @@ function InvoiceSettingModal(props) {
                   ))}
                 </div>
 
-                <div className="font-title mb-2">Choose Background Image</div>
+                {/* <div className="font-title mb-2">Choose Background Image</div>
 
                 <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 mx-auto">
                   {imageData.map((image) => (
@@ -111,7 +111,7 @@ function InvoiceSettingModal(props) {
                       />
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
